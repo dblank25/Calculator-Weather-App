@@ -1,0 +1,47 @@
+<center>
+<h2>Calculator</h2>
+</center>
+
+<!-- Input boxes and button-->
+<input type="text" id="n" placeholder="Input Value for Seed(n)">
+
+
+<!-- DropDown Menu-->
+<select id = "option">
+  <option value="fact">Fact</option>
+  <option value="sum">Summation</option>
+</select>
+
+
+<button type="button" id="btn" name="button" onclick="calcRequest()">Click Here to Calculate</button>
+
+<div id="output"></div>
+
+
+<script type="text/javascript">
+
+function calcRequest(){
+    var option = $("#option").val();
+    var URL = "http://localhost:8080/" + option;
+    var n = $("#n").val()
+    var params = {'num' : n};
+
+   if (n >= 0 & Number.isInteger(parseFloat(n))){
+    $.ajax({
+      url: URL,
+      type: "GET",
+      data: params,
+      success: function (msg) {
+        $("#output").html(msg).enhanceWithin();
+       },
+      error: function (){
+        alert('Error Connecting to Server.');
+      }
+     });
+   }
+   else {
+     alert('Enter integer greater or equal to zero.');
+     $("#current").html("");
+   }
+   }
+</script>

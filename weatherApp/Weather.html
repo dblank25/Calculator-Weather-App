@@ -1,0 +1,44 @@
+<!-- Header and Footer -->
+<center>
+<h2>What's The Weather?</h2>
+</center>
+
+<!-- Input boxes and button-->
+<input type="text" id="zip" placeholder="Enter Zip Code">
+<button type="button" id="btn" name="button" onclick="weatherRequest()">Click Here for Forecast</button>
+
+
+<!-- Table Styling -->
+<style>
+  table td{
+      border: 1px solid black;
+      text-align: center;
+      width: 10%;
+    }
+</style>
+
+<table color="black" data-role=“table” id="table"></table>
+
+
+<script type="text/javascript">
+
+
+// Makes Request to weather API and returns data in JSON format
+function weatherRequest() {
+  var zip = $("#zip").val()
+  var URL = "http://localhost:8080/getWeather";
+  $.ajax({
+    url: URL,
+    type: "POST",
+    data: {'zip' : zip},
+    success: function (msg) {
+      $("#table").html(msg).enhanceWithin();
+     },
+    error: function (){
+      console.log("Error connecting to server");
+    }
+   });
+ }
+
+
+ </script>

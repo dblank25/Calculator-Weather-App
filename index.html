@@ -1,0 +1,75 @@
+<html>
+
+<head>
+
+<title>HW4</title>
+    <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />
+    <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+    <script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+</head>
+
+
+<body>
+
+<!-- Making Request to Server to get Page-->
+<script type="text/javascript">
+
+   function pageRequest(option){
+
+    var URL = "http://localhost:8080/" + option;
+
+     $.ajax({
+       url: URL,
+       type: "GET",
+       success: function (msg) {
+         $("#content").html(msg).enhanceWithin();
+        },
+       error: function (){
+         alert('Error Connecting to Server.');
+       }
+      });
+    }
+
+</script>
+
+  
+ <div data-role = "page" id = "page1">
+
+  <!-- Panel -->
+   <div data-role = "panel" id = "panel1" data-display="overlay">
+      <center>
+      <button type="button" data-icon="home" href="#" onclick="pageRequest('home')">Home</button>
+      <button type="button"href="#" data-icon="grid" onclick="pageRequest('calc')">Calculator</button>
+      <button type="button"href="#" class="ui-btn ui-shadow ui-corner-all ui-btn-icon-left ui-icon-cloud" onclick="pageRequest('weather')" >Weather</button>
+      </center>
+   </div>
+
+   <!-- Header -->
+   <div data-role="header">
+      <h2>Assignment 4</h2>
+      <a href="#panel1" class="ui-btn ui-shadow ui-corner-all ui-btn-inline ui-btn-icon-left ui-icon-bars" >Menu</a>
+   </div>
+
+   <!-- Footer -->
+  <div data-role="footer" data-position="fixed">
+    <h2>Dean Blank</h2>
+  </div>
+
+  <!-- Page Content -->
+  <div id="content">
+    <center>
+    <img width="500px" height="400px" src="drexel.png" alt="">
+    </center>
+
+    <style>
+      img {max-width:100%}
+    </style>
+  </div>
+
+
+</div>
+
+
+</body>
+
+</html>
